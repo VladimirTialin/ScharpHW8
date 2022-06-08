@@ -10,7 +10,7 @@ int[,] NumberArray(int[,] numberArray)
 {
         for (var j = 0; j < numberArray.GetLength(1); j++)
         {
-            numberArray[i, j] = new Random().Next(1, 8);
+            numberArray[i, j] = new Random().Next(10, 40);
         }
     }
     return numberArray;
