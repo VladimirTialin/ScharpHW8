@@ -10,7 +10,7 @@ int[,] NumberArray(int[,] numberArray)
 {
         for (var j = 0; j < numberArray.GetLength(1); j++)
         {
-            numberArray[i, j] = new Random().Next(30, 90);
+            numberArray[i, j] = new Random().Next(1, 8);
         }
     }
     return numberArray;
@@ -60,21 +60,24 @@ void PrintMatrixMulti(int[,] arrayToPrint,string name)
 //Произведение матриц
 int[,] MultiplicationMatrix(int[,] MatrixOne,int[,] MatrixTwo)
 {
+    int [,] result=new int[MatrixOne.GetLength(0),MatrixTwo.GetLength(1)];
     for (var i = 0; i < MatrixOne.GetLength(0); i++)
     {
-        for (var j = 0; j < MatrixOne.GetLength(1); j++)
+        for (var j = 0; j < MatrixTwo.GetLength(0); j++)
         {
-            int temp = MatrixOne[i, j] * MatrixTwo[i, j];
-            MatrixOne[i, j] = temp;
+            for (var x = 0; x <MatrixTwo.GetLength(1); x++)
+            {
+                result[i,x]+=MatrixOne[i,j]*MatrixTwo[j,x];
+            }
         }
     }
-    return MatrixOne;
+    return result;
 }
 Console.Write("Введите размер матрицы: ");
 int sizeMatrix = Convert.ToInt32(Console.ReadLine());
 var MatrixOne = new int[sizeMatrix, sizeMatrix];
 var MatrixTwo = new int[sizeMatrix, sizeMatrix];
-int[,] MatrixArrOne = NumberArray(MatrixOne);
+int[,] MatrixArrOne =NumberArray(MatrixOne);
 int[,] MatrixArrTwo = NumberArray(MatrixTwo);
 PrintMatrixs(MatrixArrOne,MatrixArrTwo,"Matrix1","Matrix2");
 int[,] result = MultiplicationMatrix(MatrixArrOne, MatrixArrTwo);
